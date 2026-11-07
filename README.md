@@ -22,90 +22,9 @@ Sou desenvolvedor sênior de back-end em Python e sistemas cloud native na AWS. 
 
 Comecei pela pesquisa: em 2018 já treinava modelos de visão computacional e NLP na iniciação científica, e meu TCC foi uma plataforma de *Machine Learning as a Service*. Este perfil junta as duas pontas: os projetos de agora e o laboratório de ML que veio antes.
 
-## Como trabalho com agentes de IA
-
 <picture>
-  <img alt="Fluxo em seis etapas: história com critério de aceite, spec com o quê e por quê, plano com passos e riscos, especialistas com o modelo escolhido por custo, revisão com gates independentes e entrega com evidências" src="assets/agent-flow.svg" width="100%">
+  <img alt="01 — Stack" src="assets/sections/06-stack.svg" width="100%">
 </picture>
-
-Nada vira código antes de história, spec e plano aprovados. Depois, um agente gestor distribui o trabalho entre especialistas, escolhe o modelo pelo custo e pela complexidade de cada tarefa, e a entrega só sai depois de revisões independentes. Uso esse fluxo no dia a dia com Claude Code, Codex e Kiro, e os repositórios abaixo são a versão empacotada dele.
-
-## Projetos em destaque
-
-<table>
-  <tr>
-    <td width="50%" valign="top">
-      <h3><a href="https://github.com/allankltsn/guilda">guilda</a></h3>
-      <p>Time de engenharia de IA para Claude Code e Codex, instalado com um comando: 28 papéis, 10 perfis opcionais e um agente gestor que escreve histórias, escolhe especialistas e cobra evidências. Independe de stack.</p>
-      <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python">
-      <img src="https://img.shields.io/badge/Claude_Code-D97757?style=flat-square" alt="Claude Code">
-      <img src="https://img.shields.io/badge/Codex-000000?style=flat-square" alt="Codex">
-    </td>
-    <td width="50%" valign="top">
-      <h3><a href="https://github.com/allankltsn/genai-libras-translations">genai-libras-translations</a></h3>
-      <p>Prova de conceito: fala ou texto vira glosas de Libras, que viram sinais num avatar 3D (VRM). API em FastAPI com LLM. Os sinais são aproximações ainda não validadas por intérpretes.</p>
-      <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript">
-      <img src="https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white" alt="FastAPI">
-      <img src="https://img.shields.io/badge/three.js_·_VRM-000000?style=flat-square&logo=threedotjs&logoColor=white" alt="three.js e VRM">
-    </td>
-  </tr>
-  <tr>
-    <td width="50%" valign="top">
-      <h3><a href="https://github.com/allankltsn/vscode-grouped-tools-extension">group tools</a> · <a href="https://allankltsn.github.io/vscode-grouped-tools-extension/">demo</a></h3>
-      <p>Extensão do VS Code que reúne os painéis de outras extensões num só lugar, com busca, grupos coloridos, favoritos por workspace e fixação na barra de status. Segue o tema claro, escuro e alto contraste.</p>
-      <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black" alt="JavaScript">
-      <img src="https://img.shields.io/badge/VS_Code_API-007ACC?style=flat-square&logo=visualstudiocode&logoColor=white" alt="VS Code API">
-    </td>
-    <td width="50%" valign="top">
-      <h3><a href="https://github.com/allankltsn/setup_kiro">setup_kiro</a> · <a href="https://github.com/allankltsn/agno_study">agno_study</a></h3>
-      <p>Kit de hooks, steering e skills para o Kiro com postura de arquiteto sênior: lint ao salvar, proteção da main, bloqueio de segredos no commit e commitlint. O <code>agno_study</code> aplica o kit ao estudo de agentes Agno, da criação ao deploy na AWS.</p>
-      <img src="https://img.shields.io/badge/Kiro-7c3aed?style=flat-square" alt="Kiro">
-      <img src="https://img.shields.io/badge/Agno-2dd4bf?style=flat-square" alt="Agno">
-      <img src="https://img.shields.io/badge/AWS-232F3E?style=flat-square&logo=amazonwebservices&logoColor=white" alt="AWS">
-    </td>
-  </tr>
-</table>
-
-<details>
-<summary><b>Mais projetos de back-end e cloud</b></summary>
-<br>
-
-| Projeto | O que é | Stack |
-|---|---|---|
-| [vibecoder-template](https://github.com/allankltsn/vibecoder-template) | Hub de desenvolvimento assistido por IA: cada projeto nasce como satélite e herda agentes, templates e workflows | Python, Claude Code |
-| [aws_apigateway_authenticator](https://github.com/AllanKT/aws_apigateway_authenticator) | Autenticador no API Gateway que protege um serviço REST sem tocar no código dele, com contagem de acessos | AWS API Gateway, Lambda, DynamoDB |
-| [fastapi-observability-opentelemetry](https://github.com/AllanKT/fastapi-observability-opentelemetry) | Os três pilares de observabilidade (logs, métricas, traces) de uma API FastAPI no Grafana | Python, OpenTelemetry, Grafana |
-| [cypress_login_captcha_mfa](https://github.com/AllanKT/cypress_login_captcha_mfa) | Testes E2E de login com reCAPTCHA e MFA | TypeScript, Cypress |
-| [python-dynamo](https://github.com/AllanKT/python-dynamo) | Acesso ao DynamoDB em Python | Python, AWS |
-
-</details>
-
-## Laboratório de ML e NLP
-
-Estudos e pesquisas de 2018 a 2022, na conta [@AllanKT](https://github.com/AllanKT).
-
-| Projeto | O que fiz | Técnicas |
-|---|---|---|
-| [SentimentalClassifierPoliticosBrasil2018](https://github.com/AllanKT/SentimentalClassifierPoliticosBrasil2018) | Coletei tweets sobre os candidatos à Presidência em 2018 e classifiquei o sentimento de cada um | Tweepy, Word2Vec, rede neural |
-| [MachineLearningAsAService](https://github.com/AllanKT/MachineLearningAsAService) | TCC: serviço em container que pré-processa dados, treina e avalia modelos e gera os gráficos de cada um | KNN, Naive Bayes, SVM, Docker |
-| [Text-Mining-and-NLP](https://github.com/AllanKT/Text-Mining-and-NLP) | Pipeline de mineração de texto: limpeza, stemming e vetorização | NLTK, TextBlob, scikit-learn |
-| [Prouni-Data-Classification](https://github.com/AllanKT/Prouni-Data-Classification) | Classificação sobre os dados abertos do Prouni 2016, com reamostragem para classes desbalanceadas | KNN, Naive Bayes, SVM |
-| [AlphaReadMicroservice](https://github.com/AllanKT/AlphaReadMicroservice) | Microsserviço de classificação de imagens para o app Android AlphaRead | Visão computacional, Python |
-| [HumanClassifier](https://github.com/AllanKT/HumanClassifier) | Detecção de pessoas em imagens com descritor HOG | OpenCV, HOG + SVM |
-| [CursoMachineLearning](https://github.com/AllanKT/CursoMachineLearning) | Material de curso em aulas: Python, NumPy, Pandas, Matplotlib e os principais classificadores | KNN, NB, SVM, árvores de decisão |
-
-## Fundamentos de computação
-
-Algoritmos, paralelismo e grafos em C, C++ e Python.
-
-| Projeto | O que é |
-|---|---|
-| [Algoritimo_Genetico](https://github.com/AllanKT/Algoritimo_Genetico) | Iniciação científica: simulador que posiciona nós de uma rede de sensores sem fio com heurística (C++) |
-| [Programacao-Paralela](https://github.com/AllanKT/Programacao-Paralela) | Integrais numéricas, crivo de primos e soma de vetores em C paralelo, num ambiente Docker |
-| [Graph-Project-Finder](https://github.com/AllanKT/Graph-Project-Finder) | Grafo de profissionais com geolocalização: acha o mais próximo disponível para cada função por menor caminho (Python) |
-| [competitive_programming](https://github.com/AllanKT/competitive_programming) | Mais de 100 problemas resolvidos no URI, Codeforces e CodCad (C, C++, Python) |
-
-## Stack
 
 <table>
   <tr>
@@ -185,7 +104,17 @@ Algoritmos, paralelismo e grafos em C, C++ e Python.
   </tr>
 </table>
 
-## Trajetória
+<picture>
+  <img alt="02 — Código em números" src="assets/sections/05-numeros-titulo.svg" width="100%">
+</picture>
+
+<picture>
+  <img alt="Código em números: 40 repositórios próprios nas duas contas, 8 linguagens principais, primeiro repositório em 2018. Python lidera com 11 repositórios; 2026 é o ano com mais repositórios criados, 12." src="assets/sections/05-numeros.svg" width="100%">
+</picture>
+
+<picture>
+  <img alt="03 — Trajetória" src="assets/sections/07-trajetoria.svg" width="100%">
+</picture>
 
 <picture>
   <img alt="Linha do tempo: 2018, iniciação científica em IA e estágio na Stefanini com ML, NLP e chatbots; 2019, prêmio destaque de iniciação científica; 2020, bacharelado em Ciência da Computação com TCC em Machine Learning as a Service; 2021, líder técnico; 2021 a 2024, ISH Tech e SafeLabs com Digital Risk Protection; 2024 até hoje, NuageIT com agentes de IA; 2026, pós-graduação em IA aplicada" src="assets/timeline.svg" width="100%">
@@ -203,6 +132,86 @@ Algoritmos, paralelismo e grafos em C, C++ e Python.
 - **Bacharelado em Ciência da Computação**, IESB, 2020.
 
 </details>
+
+<picture>
+  <img alt="04 — Como trabalho com agentes de IA" src="assets/sections/00-fluxo.svg" width="100%">
+</picture>
+
+<picture>
+  <img alt="Fluxo em seis etapas: história com critério de aceite, spec com o quê e por quê, plano com passos e riscos, especialistas com o modelo escolhido por custo, revisão com gates independentes e entrega com evidências" src="assets/agent-flow.svg" width="100%">
+</picture>
+
+Nada vira código antes de história, spec e plano aprovados. Depois, um agente gestor distribui o trabalho entre especialistas, escolhe o modelo pelo custo e pela complexidade de cada tarefa, e a entrega só sai depois de revisões independentes. Uso esse fluxo no dia a dia com Claude Code, Codex e Kiro, e os repositórios abaixo são a versão empacotada dele.
+
+<picture>
+  <img alt="05 — Projetos em destaque" src="assets/sections/01-destaques.svg" width="100%">
+</picture>
+
+<p align="center">
+  <a href="https://github.com/allankltsn/guilda"><img src="assets/cards/guilda.svg" width="49%" alt="allankltsn/guilda: Time de engenharia de IA para Claude Code e Codex, instalado com um comando: 28 papéis, 10 perfis e um agente gestor que escreve histórias, escolhe especialistas e cobra evidências."></a>
+  <a href="https://github.com/allankltsn/genai-libras-translations"><img src="assets/cards/genai-libras.svg" width="49%" alt="allankltsn/genai-libras-translations: Prova de conceito: fala ou texto vira glosas de Libras, que viram sinais num avatar 3D (VRM). API em FastAPI com LLM. Sinais ainda não validados por intérpretes."></a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/allankltsn/vscode-grouped-tools-extension"><img src="assets/cards/group-tools.svg" width="49%" alt="allankltsn/vscode-grouped-tools-extension: Extensão do VS Code que reúne os painéis de outras extensões num só lugar: busca, grupos coloridos, favoritos por workspace e fixação na barra de status."></a>
+  <a href="https://github.com/allankltsn/setup_kiro"><img src="assets/cards/setup-kiro.svg" width="49%" alt="allankltsn/setup_kiro: Kit de hooks, steering e skills do Kiro com postura de arquiteto sênior: lint ao salvar, proteção da main, bloqueio de segredos no commit e commitlint."></a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/allankltsn/agno_study"><img src="assets/cards/agno-study.svg" width="49%" alt="allankltsn/agno_study: Estudo de agentes com Agno, da criação ao deploy na AWS, apoiado por skills do Agno (agentes básicos, AgentOS, avaliação, qualidade) e pelo kit setup_kiro."></a>
+  <a href="https://github.com/allankltsn/vibecoder-template"><img src="assets/cards/vibecoder.svg" width="49%" alt="allankltsn/vibecoder-template: Hub de desenvolvimento assistido por IA: cada projeto nasce como satélite e herda agentes, templates e workflows do hub."></a>
+</p>
+
+<picture>
+  <img alt="06 — Back-end e cloud" src="assets/sections/02-backend-cloud.svg" width="100%">
+</picture>
+
+<p align="center">
+  <a href="https://github.com/AllanKT/aws_apigateway_authenticator"><img src="assets/cards/apigateway-auth.svg" width="49%" alt="AllanKT/aws_apigateway_authenticator: Autenticador no API Gateway que protege um serviço REST sem alterar o código dele, com contagem de acessos no DynamoDB."></a>
+  <a href="https://github.com/AllanKT/fastapi-observability-opentelemetry"><img src="assets/cards/fastapi-otel.svg" width="49%" alt="AllanKT/fastapi-observability-opentelemetry: Os três pilares de observabilidade (logs, métricas e traces) de uma API FastAPI, reunidos no Grafana."></a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/AllanKT/cypress_login_captcha_mfa"><img src="assets/cards/cypress-mfa.svg" width="49%" alt="AllanKT/cypress_login_captcha_mfa: Testes E2E de login em sistema com reCAPTCHA e MFA, cobrindo o fluxo completo de autenticação."></a>
+  <a href="https://github.com/AllanKT/python-dynamo"><img src="assets/cards/python-dynamo.svg" width="49%" alt="AllanKT/python-dynamo: Acesso ao DynamoDB em Python: modelagem de chaves e operações de leitura e escrita."></a>
+</p>
+
+<picture>
+  <img alt="07 — Laboratório de ML e NLP" src="assets/sections/03-ml-nlp.svg" width="100%">
+</picture>
+
+<p align="center">
+  <a href="https://github.com/AllanKT/SentimentalClassifierPoliticosBrasil2018"><img src="assets/cards/sentimental.svg" width="49%" alt="AllanKT/SentimentalClassifierPoliticosBrasil2018: Coleta de tweets sobre os candidatos à Presidência em 2018 e classificação do sentimento de cada um com embeddings e rede neural."></a>
+  <a href="https://github.com/AllanKT/MachineLearningAsAService"><img src="assets/cards/mlaas.svg" width="49%" alt="AllanKT/MachineLearningAsAService: TCC: serviço em container que pré-processa dados, treina e avalia modelos e gera os gráficos de cada um."></a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/AllanKT/Text-Mining-and-NLP"><img src="assets/cards/text-mining.svg" width="49%" alt="AllanKT/Text-Mining-and-NLP: Pipeline de mineração de texto: limpeza, stemming e vetorização de documentos."></a>
+  <a href="https://github.com/AllanKT/Prouni-Data-Classification"><img src="assets/cards/prouni.svg" width="49%" alt="AllanKT/Prouni-Data-Classification: Classificação sobre os dados abertos do Prouni 2016, com reamostragem para classes desbalanceadas."></a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/AllanKT/AlphaReadMicroservice"><img src="assets/cards/alpharead.svg" width="49%" alt="AllanKT/AlphaReadMicroservice: Microsserviço de classificação de imagens para o aplicativo Android AlphaRead."></a>
+  <a href="https://github.com/AllanKT/HumanClassifier"><img src="assets/cards/human-classifier.svg" width="49%" alt="AllanKT/HumanClassifier: Detecção de pessoas em imagens com descritor HOG e SVM."></a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/AllanKT/CursoMachineLearning"><img src="assets/cards/curso-ml.svg" width="49%" alt="AllanKT/CursoMachineLearning: Material de curso em aulas: Python, NumPy, Pandas, Matplotlib e os principais classificadores, com exercícios."></a>
+</p>
+
+<picture>
+  <img alt="08 — Fundamentos de computação" src="assets/sections/04-fundamentos.svg" width="100%">
+</picture>
+
+<p align="center">
+  <a href="https://github.com/AllanKT/Algoritimo_Genetico"><img src="assets/cards/genetic.svg" width="49%" alt="AllanKT/Algoritimo_Genetico: Iniciação científica: simulador que posiciona nós de uma rede de sensores sem fio com heurística, otimizando cobertura."></a>
+  <a href="https://github.com/AllanKT/Programacao-Paralela"><img src="assets/cards/parallel.svg" width="49%" alt="AllanKT/Programacao-Paralela: Integrais numéricas, crivo de primos e soma de vetores em C paralelo, executados num ambiente Docker."></a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/AllanKT/Graph-Project-Finder"><img src="assets/cards/graph.svg" width="49%" alt="AllanKT/Graph-Project-Finder: Grafo de profissionais com geolocalização: acha o mais próximo disponível para cada função por menor caminho."></a>
+  <a href="https://github.com/AllanKT/competitive_programming"><img src="assets/cards/competitive.svg" width="49%" alt="AllanKT/competitive_programming: Mais de 100 problemas resolvidos no URI, Codeforces e CodCad, em C, C++ e Python."></a>
+</p>
 
 ---
 

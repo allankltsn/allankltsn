@@ -1,0 +1,7 @@
+# guilda (time de engenharia de IA: Claude Code e Codex), instalado localmente
+.agents/
+.claude/
+.codex/
+.engineering/
+AGENTS.md
+CLAUDE.md
