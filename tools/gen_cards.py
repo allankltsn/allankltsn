@@ -1,36 +1,23 @@
 """Gera os SVGs animados dos tópicos do README: títulos de seção, um card por
 repositório (ilustração + descrição) e o painel "Código em números".
 
-Uso: python tools/gen_cards.py assets [stats.json]
+Uso: python tools/gen_cards.py assets [tools/github_public.json]
 Só biblioteca padrão. SMIL puro (o GitHub preserva a animação em <img>).
 """
 import json
 import math
 import sys
 import textwrap
-from collections import Counter
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+from svgkit import *  # noqa: E402,F401,F403  (paleta pastel e helpers: esc, fade, T, R, C, L)
+
 OUT = Path(sys.argv[1])
-STATS = json.loads(Path(sys.argv[2]).read_text(encoding="utf-8")) if len(sys.argv) > 2 else None
+STATS = load_public(sys.argv[2] if len(sys.argv) > 2 else None)
 (OUT / "cards").mkdir(parents=True, exist_ok=True)
 (OUT / "sections").mkdir(parents=True, exist_ok=True)
-
-BG, CARD, LINE, NODE = "#0b0f17", "#111827", "#1f2937", "#0d1117"
-TXT, MUTED, DIM = "#e6edf3", "#8b96a8", "#4b5563"
-TEAL, BLUE, PURPLE, AMBER, GREEN, PINK, RED = "#2dd4bf", "#3b82f6", "#a78bfa", "#f59e0b", "#4ade80", "#f472b6", "#ef4444"
-SANS = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
-MONO = "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
-LANG_COLOR = {"Python": "#3776ab", "TypeScript": "#3178c6", "JavaScript": "#f7df1e", "C++": "#f34b7d", "C": "#a8b9cc",
-              "Jupyter Notebook": "#f37726", "HTML": "#e34c26", "Shell": "#89e051", "Java": "#ed8b00", "CSS": "#9b6bdf"}
-
-
-def esc(s):
-    return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
-
-
-def fade(b, d=0.5):
-    return f'<animate attributeName="opacity" to="1" begin="{b}s" dur="{d}s" fill="freeze"/>'
 
 
 def loop(vals, kt, dur, attr="opacity", begin=0):
@@ -39,25 +26,6 @@ def loop(vals, kt, dur, attr="opacity", begin=0):
 
 def pulse(attr, vals, dur, begin=0):
     return f'<animate attributeName="{attr}" values="{vals}" dur="{dur}s" begin="{begin}s" repeatCount="indefinite"/>'
-
-
-def T(x, y, s, size=12, fill=MUTED, anchor="start", mono=False, weight=None, extra=""):
-    f = f' font-family="{MONO}"' if mono else ""
-    w = f' font-weight="{weight}"' if weight else ""
-    return f'<text x="{x}" y="{y}" font-size="{size}" fill="{fill}" text-anchor="{anchor}"{f}{w} {extra}>{esc(s)}</text>'
-
-
-def R(x, y, w, h, rx=4, fill="none", stroke=None, sw=1, extra="", inner=""):
-    st = f' stroke="{stroke}" stroke-width="{sw}"' if stroke else ""
-    return f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="{rx}" fill="{fill}"{st} {extra}>{inner}</rect>'
-
-
-def C(x, y, r, fill, extra="", inner=""):
-    return f'<circle cx="{x}" cy="{y}" r="{r}" fill="{fill}" {extra}>{inner}</circle>'
-
-
-def L(x1, y1, x2, y2, stroke=LINE, sw=1.5, extra=""):
-    return f'<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" stroke="{stroke}" stroke-width="{sw}" {extra}/>'
 
 
 def packet(x1, y1, x2, y2, color, dur=2.2, begin=0, r=3.5):
@@ -95,8 +63,8 @@ def m_avatar(a):
     o.append(T(300, 128, "glosas", 10, DIM, "middle", True))
     o.append(L(405, 75, 440, 75, LINE)); o.append(packet(405, 75, 440, 75, PURPLE, 1.6, 0.4))
     # avatar
-    o.append(C(500, 48, 14, "#1e293b", f'stroke="{PURPLE}" stroke-width="2"'))
-    o.append(f'<path d="M476 118 Q476 82 500 82 Q524 82 524 118 Z" fill="#1e293b" stroke="{PURPLE}" stroke-width="2"/>')
+    o.append(C(500, 48, 14, CARD, f'stroke="{PURPLE}" stroke-width="2"'))
+    o.append(f'<path d="M476 118 Q476 82 500 82 Q524 82 524 118 Z" fill="{CARD}" stroke="{PURPLE}" stroke-width="2"/>')
     o.append(f'<g><animateTransform attributeName="transform" type="rotate" values="0 524 92;-28 524 92;8 524 92;-28 524 92;0 524 92" dur="2.4s" repeatCount="indefinite"/>'
              + f'<path d="M524 92 L552 70" stroke="{PURPLE}" stroke-width="5" stroke-linecap="round"/>' + C(554, 66, 6, PURPLE) + '</g>')
     o.append(T(500, 138, "avatar 3D", 10, DIM, "middle", True))
@@ -124,7 +92,7 @@ def m_hooks(a):
     o = [R(150, 10, 300, 132, 10, NODE, LINE), T(166, 30, "hooks · pre-commit", 10, DIM, mono=True)]
     for i, r in enumerate(rows):
         y = 48 + i * 23
-        o.append(R(166, y, 268, 18, 5, "#0b1220", LINE))
+        o.append(R(166, y, 268, 18, 5, CARD, LINE))
         o.append(T(176, y + 13, r, 11, MUTED))
         t0 = 0.12 + i * 0.18
         o.append(f'<g opacity="0">{loop("0;0;1;1;0", f"0;{t0:.2f};{t0+0.05:.2f};0.92;1", 5.5)}'
@@ -196,7 +164,7 @@ def m_login(a):
 
 
 def m_dynamo(a):
-    o = [R(130, 12, 340, 126, 8, NODE, LINE), R(130, 12, 340, 24, 8, "#0b1220", LINE),
+    o = [R(130, 12, 340, 126, 8, NODE, LINE), R(130, 12, 340, 24, 8, CARD, LINE),
          T(148, 29, "pk", 11, a, mono=True), T(250, 29, "sk", 11, a, mono=True), T(360, 29, "atributos", 11, a, mono=True)]
     for i in range(4):
         y = 46 + i * 22
@@ -212,7 +180,7 @@ def m_sentiment(a):
     for i in range(5):
         y = 20 + i * 24
         pos = [0.62, 0.35, 0.5, 0.7, 0.28][i]
-        o.append(R(60, y, 330, 14, 7, "#0b1220", LINE))
+        o.append(R(60, y, 330, 14, 7, CARD, LINE))
         o.append(R(60, y, 330 * pos, 14, 7, GREEN, extra='opacity="0.85"', inner=pulse("width", f"0;{330*pos:.0f};{330*pos:.0f};0", 5, i * 0.25) ))
         o.append(R(60 + 330 * pos, y, 330 * (1 - pos), 14, 0, RED, extra='opacity="0.7"', inner=pulse("x", f"60;{60+330*pos:.0f};{60+330*pos:.0f};60", 5, i * 0.25)))
     o.append(T(60, 144, "positivo", 10, GREEN, mono=True) + T(390, 144, "negativo", 10, RED, "end", True))
@@ -259,11 +227,11 @@ def m_text(a):
 
 def m_prouni(a):
     o = [L(60, 126, 540, 126, LINE)]
-    def bars(x0, label, v1, v2, cap):
+    def bars(x0, v1, v2, cap):
         s = R(x0, 126 - v1, 56, v1, 5, BLUE, extra='opacity="0.9"', inner=pulse("height", f"{v1};{cap};{v1}", 5) + pulse("y", f"{126-v1};{126-cap};{126-v1}", 5))
         s += R(x0 + 72, 126 - v2, 56, v2, 5, a, extra='opacity="0.9"', inner=pulse("height", f"{v2};{cap};{v2}", 5) + pulse("y", f"{126-v2};{126-cap};{126-v2}", 5))
         return s
-    o.append(bars(130, "", 100, 22, 60))
+    o.append(bars(130, 100, 22, 60))
     o.append(T(194, 144, "classes desbalanceadas  →  reamostragem", 10, DIM, "middle", True, extra=""))
     o.append(f'<path d="M290 70 H330" stroke="{MUTED}" stroke-width="2" marker-end="url(#ah)"/>')
     for i, c in enumerate([BLUE, GREEN, AMBER, PINK]):
@@ -275,13 +243,13 @@ def m_prouni(a):
 def m_vision(a, kind="tree", label="árvore"):
     o = [R(170, 8, 260, 134, 8, NODE, LINE)]
     if kind == "tree":
-        o.append(f'<rect x="293" y="100" width="14" height="30" fill="#7c4a1e"/>' + C(300, 70, 30, "#166534") + C(278, 88, 20, "#15803d") + C(322, 88, 20, "#15803d"))
+        o.append(f'<rect x="293" y="100" width="14" height="30" fill="{PEACH}"/>' + C(300, 70, 30, MINT) + C(278, 88, 20, "#8fdcb9") + C(322, 88, 20, "#8fdcb9"))
         box = (255, 36, 90, 96)
     else:
-        o.append(C(300, 44, 12, "#475569") + f'<path d="M280 124 Q280 66 300 66 Q320 66 320 124 Z" fill="#475569"/>' + L(300, 66, 300, 124, "#334155", 1))
+        o.append(C(300, 44, 12, DIM) + f'<path d="M280 124 Q280 66 300 66 Q320 66 320 124 Z" fill="{DIM}"/>' + L(300, 66, 300, 124, LINE, 1))
         box = (268, 26, 64, 102)
     x, y, w, h = box
-    o.append(f'<g opacity="0">{loop("0;0;1;1;0","0;0.3;0.38;0.9;1",4)}' + R(x, y, w, h, 4, "none", a, 2) + R(x, y - 16, 70, 15, 3, a) + T(x + 6, y - 5, label, 10, "#04110f", mono=True, weight=700) + '</g>')
+    o.append(f'<g opacity="0">{loop("0;0;1;1;0","0;0.3;0.38;0.9;1",4)}' + R(x, y, w, h, 4, "none", a, 2) + R(x, y - 16, 70, 15, 3, a) + T(x + 6, y - 5, label, 10, INK, mono=True, weight=700) + '</g>')
     o.append(R(172, 8, 256, 3, 1, a, extra='opacity="0.8"', inner=pulse("y", "10;138;10", 4)))
     return "".join(o)
 
@@ -314,7 +282,7 @@ def m_parallel(a):
     o = [T(30, 28, "thread", 10, DIM, mono=True)]
     for i in range(4):
         y = 22 + i * 28
-        o.append(R(90, y, 420, 18, 4, "#0b1220", LINE))
+        o.append(R(90, y, 420, 18, 4, CARD, LINE))
         w = 120 + (i * 53) % 130
         o.append(R(90, y, w, 18, 4, [BLUE, TEAL, a, AMBER][i], extra='opacity="0.8"', inner=pulse("width", f"0;{w};{w};0", 4.5, i * 0.25)))
         o.append(T(70, y + 13, f"t{i}", 10, MUTED, "end", True))
@@ -326,7 +294,7 @@ def m_parallel(a):
 def m_graph(a):
     nodes = [(80, 108), (170, 40), (200, 112), (300, 70), (390, 28), (410, 118), (510, 70)]
     edges = [(0, 1), (0, 2), (1, 3), (2, 3), (3, 4), (3, 5), (4, 6), (5, 6), (1, 4)]
-    o = [L(*nodes[x], *nodes[y], LINE, 1.5) if False else L(nodes[x][0], nodes[x][1], nodes[y][0], nodes[y][1], LINE, 1.5) for x, y in edges]
+    o = [L(nodes[x][0], nodes[x][1], nodes[y][0], nodes[y][1], LINE, 1.5) for x, y in edges]
     path = [0, 2, 3, 5, 6]
     d = "M" + " L".join(f"{nodes[i][0]},{nodes[i][1]}" for i in path)
     o.append(f'<path d="{d}" fill="none" stroke="{a}" stroke-width="3" stroke-linecap="round" stroke-dasharray="520" stroke-dashoffset="520">'
@@ -378,20 +346,19 @@ MOTIFS = {
 W, H, IH = 600, 340, 150
 
 
-def year_of(name):
-    if not STATS:
-        return ""
-    for acc in STATS.values():
-        for r in acc["repos"]:
-            if r["name"] == name:
-                return r["created_at"][:4]
-    return ""
+def repo_info(name):
+    """(ano, linguagem principal) do repositório público, a partir de github_public.json."""
+    for r in STATS["public_repos"]:
+        if r["repo"].split("/")[1] == name:
+            return r["year"], r["lang"]
+    return "", None
 
 
 def card(slug, repo, desc, tags, accent, motif, lang, order=0):
     uid = slug.replace("_", "-")
     lines = textwrap.wrap(desc, 66)[:4]
-    year = year_of(repo.split("/")[1])
+    year, dlang = repo_info(repo.split("/")[1])
+    lang = dlang or lang
     lc = LANG_COLOR.get(lang, MUTED)
     p = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" font-family="{SANS}" role="img" '
          f'aria-label="{esc(repo)}: {esc(desc)}">',
@@ -422,7 +389,7 @@ def card(slug, repo, desc, tags, accent, motif, lang, order=0):
 # ------------------------------------------------------------------ títulos de seção
 def section(slug, num, title, sub, accent, count):
     W2, H2 = 1200, 96
-    p = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{W2}" height="{H2}" viewBox="0 0 {W2} {H2}" font-family="{SANS}" role="img" aria-label="{num} — {esc(title)}">',
+    p = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{W2}" height="{H2}" viewBox="0 0 {W2} {H2}" font-family="{SANS}" role="img" aria-label="{num}: {esc(title)}">',
          f'<defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="{accent}"/><stop offset="1" stop-color="{BLUE}"/></linearGradient></defs>',
          f'<rect width="{W2}" height="{H2}" rx="14" fill="{BG}"/>',
          f'<g opacity="0">{fade(0.1)}' + T(40, 60, num, 30, accent, mono=True, weight=700) + '</g>',
@@ -438,7 +405,7 @@ def section(slug, num, title, sub, accent, count):
 # ------------------------------------------------------------------ conteúdo
 CARDS = {
     "01-destaques": [
-        ("guilda", "allankltsn/guilda", "Time de engenharia de IA para Claude Code e Codex, instalado com um comando: 28 papéis, 10 perfis e um agente gestor que escreve histórias, escolhe especialistas e cobra evidências.", ["Claude Code", "Codex", "multiagente"], TEAL, "agents", "Python"),
+        ("guilda", "allankltsn/guilda", "Time de engenharia de IA para Claude Code e Codex, instalado com um comando: 28 papéis, 10 perfis e um agente gestor que escreve histórias, escolhe especialistas e cobra evidências.", ["Claude Code", "Codex", "multiagente"], TEAL, "agents", "HTML"),
         ("genai-libras", "allankltsn/genai-libras-translations", "Prova de conceito: fala ou texto vira glosas de Libras, que viram sinais num avatar 3D (VRM). API em FastAPI com LLM. Sinais ainda não validados por intérpretes.", ["FastAPI", "LLM", "three.js · VRM"], PURPLE, "avatar", "TypeScript"),
         ("group-tools", "allankltsn/vscode-grouped-tools-extension", "Extensão do VS Code que reúne os painéis de outras extensões num só lugar: busca, grupos coloridos, favoritos por workspace e fixação na barra de status.", ["VS Code API", "demo ao vivo"], BLUE, "panel", "JavaScript"),
         ("setup-kiro", "allankltsn/setup_kiro", "Kit de hooks, steering e skills do Kiro com postura de arquiteto sênior: lint ao salvar, proteção da main, bloqueio de segredos no commit e commitlint.", ["Kiro", "hooks", "steering"], AMBER, "hooks", "HTML"),
@@ -470,7 +437,7 @@ CARDS = {
 SECTIONS = {
     "01-destaques": ("05", "Projetos em destaque", "IA aplicada, agentes e ferramentas de desenvolvimento · conta @allankltsn", TEAL),
     "02-backend-cloud": ("06", "Back-end e cloud", "APIs, AWS, observabilidade e testes · conta @AllanKT", BLUE),
-    "03-ml-nlp": ("07", "Laboratório de ML e NLP", "Estudos e pesquisas de 2018 a 2022 · conta @AllanKT", GREEN),
+    "03-ml-nlp": ("07", "Laboratório de ML e NLP", "Estudos e pesquisas de 2018 e 2019 · conta @AllanKT", GREEN),
     "04-fundamentos": ("08", "Fundamentos de computação", "Algoritmos, paralelismo e grafos · conta @AllanKT", AMBER),
 }
 
@@ -484,62 +451,15 @@ for key, items in CARDS.items():
 
 # ------------------------------------------------------------------ Código em números
 def numbers():
-    if not STATS:
-        return
-    repos = [dict(r, acc=u) for u, d in STATS.items() for r in d["repos"]]
-    n = len(repos)
-    langs = Counter(r["language"] for r in repos if r["language"])
-    years = Counter(r["created_at"][:4] for r in repos)
-    stars = sum(r["stargazers_count"] for r in repos)
-    since = min(years)
-    W2, H2 = 1200, 470
-    p = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{W2}" height="{H2}" viewBox="0 0 {W2} {H2}" font-family="{SANS}" role="img" '
-         f'aria-label="Código em números: {n} repositórios próprios em duas contas desde {since}, {len(langs)} linguagens principais">',
-         f'<defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="{TEAL}"/><stop offset="1" stop-color="{BLUE}"/></linearGradient></defs>',
-         f'<rect width="{W2}" height="{H2}" rx="14" fill="{BG}"/>']
-    # tiles
-    tiles = [(str(n), "repositórios próprios", TEAL), (str(len(langs)), "linguagens principais", BLUE),
-             (since, "ano do primeiro repositório", PURPLE), ("2", "contas: @allankltsn e @AllanKT", AMBER)]
-    for i, (v, l, c) in enumerate(tiles):
-        x = 40 + i * 286
-        p.append(f'<g opacity="0">{fade(0.1+i*0.15)}' + R(x, 30, 268, 92, 12, CARD, LINE) + R(x, 30, 4, 92, 2, c)
-                 + T(x + 24, 84, v, 44, TXT, weight=700) + T(x + 24, 108, l, 13, MUTED) + '</g>')
-    # linguagens (barras horizontais por nº de repos)
-    top = langs.most_common(7)
-    mx = top[0][1]
-    p.append(f'<g opacity="0">{fade(0.7)}' + T(40, 166, "Linguagem principal por repositório", 14, TXT, weight=600) + '</g>')
-    for i, (lg, v) in enumerate(top):
-        y = 186 + i * 36
-        c = LANG_COLOR.get(lg, MUTED)
-        wmax = 400
-        p.append(f'<g opacity="0">{fade(0.8+i*0.1,0.4)}' + T(40, y + 16, lg, 13, MUTED) + R(180, y + 2, wmax, 16, 8, "#0b1220", LINE) + '</g>')
-        p.append(R(180, y + 2, 0, 16, 8, c, inner=f'<animate attributeName="width" to="{wmax*v/mx:.0f}" begin="{1.0+i*0.12}s" dur="0.9s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.2 0 0.2 1"/>'))
-        p.append(f'<g opacity="0">{fade(1.5+i*0.12,0.4)}' + T(190 + wmax * v / mx + 0, y + 16, str(v), 12, TXT, mono=True) + '</g>')
-    # repositórios criados por ano
-    ys = sorted(years)
-    x0, base, bh = 660, 400, 190
-    pk = max(years.values())
-    p.append(f'<g opacity="0">{fade(0.7)}' + T(x0, 166, "Repositórios criados por ano", 14, TXT, weight=600) + '</g>')
-    p.append(L(x0, base, 1160, base, LINE))
-    bw = min(40, 480 / len(ys) - 14)
-    gap = 480 / len(ys)
-    for i, y in enumerate(ys):
-        v = years[y]
-        h = bh * v / pk
-        x = x0 + i * gap + (gap - bw) / 2
-        col = TEAL if y == max(ys) else (BLUE if int(y) >= 2024 else PURPLE)
-        p.append(R(f"{x:.0f}", base, bw, 0, 5, col, extra='opacity="0.9"', inner=f'<animate attributeName="height" to="{h:.0f}" begin="{1.0+i*0.1}s" dur="0.8s" fill="freeze"/><animate attributeName="y" to="{base-h:.0f}" begin="{1.0+i*0.1}s" dur="0.8s" fill="freeze"/>'))
-        p.append(f'<g opacity="0">{fade(1.6+i*0.1,0.4)}' + T(f"{x+bw/2:.0f}", f"{base-h-8:.0f}", str(v), 12, TXT, "middle", True) + '</g>')
-        p.append(T(f"{x+bw/2:.0f}", base + 20, y, 12, MUTED, "middle", True))
-    p.append(f'<g opacity="0">{fade(2.2)}' + T(40, H2 - 22, "Fonte: API pública do GitHub, repositórios próprios (sem forks) das duas contas. Linguagem por repositório, não por bytes, para não contar bibliotecas versionadas.", 11.5, DIM) + '</g>')
-    p.append('</svg>')
-    (OUT / "sections" / "05-numeros.svg").write_text("\n".join(p), encoding="utf-8")
-    section("05-numeros-titulo", "02", "Código em números", "Panorama dos repositórios das duas contas", BLUE, f"{n} repositórios")
-    print("ok numbers", n, dict(langs), dict(years), "stars", stars)
+    import charts_numbers
+    svg, info = charts_numbers.build(STATS)
+    (OUT / "sections" / "05-numeros.svg").write_text(svg, encoding="utf-8")
+    section("05-numeros-titulo", "02", "Código em números", "Panorama dos repositórios das duas contas", BLUE, f"{info['n']} repositórios")
+    print("ok numbers", info)
 
 
 numbers()
 
-section("00-fluxo", "04", "Como trabalho com agentes de IA", "Spec-driven e multiagente, do pedido à entrega", PINK, "6 etapas")
+section("00-fluxo", "04", "Como trabalho com agentes de IA", "Spec-driven e multiagente, do pedido à entrega", PINK, "13 etapas")
 section("06-stack", "01", "Stack", "Ferramentas do dia a dia, agrupadas por área", TEAL, "7 áreas")
-section("07-trajetoria", "03", "Trajetória", "De 2018 até hoje: pesquisa, liderança técnica e IA aplicada", PURPLE, "2018 → 2026")
+section("07-trajetoria", "03", "Trajetória", "De 2015 a 2026: formação, pesquisa, carreira e projetos", PURPLE, "2015 → 2026")

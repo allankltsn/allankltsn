@@ -5,3 +5,9 @@
 .engineering/
 AGENTS.md
 CLAUDE.md
+
+# dados locais e artefatos (não versionar)
+Allan_Teotonio_Curriculo.html
+Allan_Teotonio_Curriculo.pdf
+tools/github_data.json
+tools/__pycache__/

@@ -1,0 +1,482 @@
+{
+ "note": "Agregado das contas allankltsn e AllanKT via API do GitHub. Linguagem contada com >= 1% dos bytes do repositório. Privados só em agregados. Terceiros excluídos.",
+ "total_repos": 58,
+ "private": 16,
+ "excluded_third_party": 3,
+ "by_language": {
+  "Python": {
+   "repos": 21,
+   "private_repos": 2
+  },
+  "JavaScript": {
+   "repos": 16,
+   "private_repos": 6
+  },
+  "TypeScript": {
+   "repos": 15,
+   "private_repos": 8
+  },
+  "Shell": {
+   "repos": 12,
+   "private_repos": 6
+  },
+  "HTML": {
+   "repos": 10,
+   "private_repos": 3
+  },
+  "CSS": {
+   "repos": 9,
+   "private_repos": 3
+  },
+  "Jupyter Notebook": {
+   "repos": 7,
+   "private_repos": 0
+  },
+  "Dockerfile": {
+   "repos": 4,
+   "private_repos": 0
+  },
+  "PLpgSQL": {
+   "repos": 2,
+   "private_repos": 2
+  },
+  "C++": {
+   "repos": 2,
+   "private_repos": 0
+  },
+  "C": {
+   "repos": 2,
+   "private_repos": 0
+  },
+  "PowerShell": {
+   "repos": 1,
+   "private_repos": 1
+  },
+  "HCL": {
+   "repos": 1,
+   "private_repos": 0
+  }
+ },
+ "by_year": {
+  "2018": 6,
+  "2019": 7,
+  "2020": 7,
+  "2021": 1,
+  "2023": 1,
+  "2024": 3,
+  "2025": 5,
+  "2026": 28
+ },
+ "private_by_year": {
+  "2026": 16
+ },
+ "below_threshold_languages": [
+  "Batchfile",
+  "Go Template",
+  "Lua",
+  "Makefile",
+  "Typst"
+ ],
+ "public_repos": [
+  {
+   "repo": "allankltsn/agentic_qa_platform",
+   "lang": "TypeScript",
+   "year": "2026",
+   "fork": false,
+   "languages": [
+    "TypeScript",
+    "JavaScript",
+    "HTML",
+    "Shell"
+   ]
+  },
+  {
+   "repo": "allankltsn/agno_study",
+   "lang": "Python",
+   "year": "2026",
+   "fork": false,
+   "languages": [
+    "Python",
+    "Shell"
+   ]
+  },
+  {
+   "repo": "allankltsn/allankltsn",
+   "lang": "Python",
+   "year": "2026",
+   "fork": false,
+   "languages": [
+    "Python"
+   ]
+  },
+  {
+   "repo": "allankltsn/aura-ui-kit",
+   "lang": "TypeScript",
+   "year": "2026",
+   "fork": false,
+   "languages": [
+    "TypeScript",
+    "HTML",
+    "CSS",
+    "JavaScript"
+   ]
+  },
+  {
+   "repo": "allankltsn/ClaudeForFirefoxExtension",
+   "lang": null,
+   "year": "2026",
+   "fork": false,
+   "languages": []
+  },
+  {
+   "repo": "allankltsn/genai-libras-translations",
+   "lang": "TypeScript",
+   "year": "2026",
+   "fork": false,
+   "languages": [
+    "TypeScript",
+    "Python",
+    "JavaScript",
+    "HTML",
+    "CSS",
+    "Shell"
+   ]
+  },
+  {
+   "repo": "allankltsn/guilda",
+   "lang": "HTML",
+   "year": "2026",
+   "fork": false,
+   "languages": [
+    "HTML",
+    "Python",
+    "TypeScript"
+   ]
+  },
+  {
+   "repo": "allankltsn/pos-graduaao-eng-ia-aplicada",
+   "lang": null,
+   "year": "2026",
+   "fork": false,
+   "languages": []
+  },
+  {
+   "repo": "allankltsn/setup_kiro",
+   "lang": "HTML",
+   "year": "2026",
+   "fork": false,
+   "languages": [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "Shell"
+   ]
+  },
+  {
+   "repo": "allankltsn/vibecoder-template",
+   "lang": "Python",
+   "year": "2026",
+   "fork": false,
+   "languages": [
+    "Python"
+   ]
+  },
+  {
+   "repo": "allankltsn/vscode-grouped-tabs-extension",
+   "lang": null,
+   "year": "2026",
+   "fork": false,
+   "languages": []
+  },
+  {
+   "repo": "allankltsn/vscode-grouped-tools-extension",
+   "lang": "JavaScript",
+   "year": "2026",
+   "fork": false,
+   "languages": [
+    "JavaScript",
+    "CSS",
+    "Shell"
+   ]
+  },
+  {
+   "repo": "AllanKT/Algoritimo_Genetico",
+   "lang": "C++",
+   "year": "2018",
+   "fork": false,
+   "languages": [
+    "C++",
+    "Python"
+   ]
+  },
+  {
+   "repo": "AllanKT/AlphaReadMicroservice",
+   "lang": "Python",
+   "year": "2018",
+   "fork": false,
+   "languages": [
+    "Python",
+    "Jupyter Notebook"
+   ]
+  },
+  {
+   "repo": "AllanKT/AutomaticCommitTemplate",
+   "lang": "JavaScript",
+   "year": "2020",
+   "fork": false,
+   "languages": [
+    "JavaScript"
+   ]
+  },
+  {
+   "repo": "AllanKT/AWS-Certified-Developer-Associate",
+   "lang": null,
+   "year": "2020",
+   "fork": false,
+   "languages": []
+  },
+  {
+   "repo": "AllanKT/aws_apigateway_authenticator",
+   "lang": "Python",
+   "year": "2024",
+   "fork": false,
+   "languages": [
+    "Python",
+    "HCL"
+   ]
+  },
+  {
+   "repo": "AllanKT/board_service",
+   "lang": "TypeScript",
+   "year": "2025",
+   "fork": false,
+   "languages": [
+    "TypeScript",
+    "CSS"
+   ]
+  },
+  {
+   "repo": "AllanKT/competitive_programming",
+   "lang": "C++",
+   "year": "2018",
+   "fork": false,
+   "languages": [
+    "C++",
+    "Python",
+    "C"
+   ]
+  },
+  {
+   "repo": "AllanKT/CursoMachineLearning",
+   "lang": "Jupyter Notebook",
+   "year": "2019",
+   "fork": false,
+   "languages": [
+    "Jupyter Notebook"
+   ]
+  },
+  {
+   "repo": "AllanKT/cypress_login_captcha_mfa",
+   "lang": "TypeScript",
+   "year": "2025",
+   "fork": false,
+   "languages": [
+    "TypeScript",
+    "JavaScript"
+   ]
+  },
+  {
+   "repo": "AllanKT/discordBot",
+   "lang": "Python",
+   "year": "2018",
+   "fork": false,
+   "languages": [
+    "Python"
+   ]
+  },
+  {
+   "repo": "AllanKT/fastapi-observability-opentelemetry",
+   "lang": "Python",
+   "year": "2024",
+   "fork": false,
+   "languages": [
+    "Python",
+    "Dockerfile"
+   ]
+  },
+  {
+   "repo": "AllanKT/glpi-sdk-python",
+   "lang": "Python",
+   "year": "2019",
+   "fork": true,
+   "languages": [
+    "Python"
+   ]
+  },
+  {
+   "repo": "AllanKT/Graph-Project-Finder",
+   "lang": "Python",
+   "year": "2018",
+   "fork": false,
+   "languages": [
+    "Python"
+   ]
+  },
+  {
+   "repo": "AllanKT/graphql-python-subscriptions",
+   "lang": null,
+   "year": "2020",
+   "fork": true,
+   "languages": [
+    "Python"
+   ]
+  },
+  {
+   "repo": "AllanKT/HumanClassifier",
+   "lang": "Jupyter Notebook",
+   "year": "2019",
+   "fork": false,
+   "languages": [
+    "Jupyter Notebook"
+   ]
+  },
+  {
+   "repo": "AllanKT/lib_test",
+   "lang": null,
+   "year": "2025",
+   "fork": false,
+   "languages": []
+  },
+  {
+   "repo": "AllanKT/login-api",
+   "lang": null,
+   "year": "2025",
+   "fork": false,
+   "languages": []
+  },
+  {
+   "repo": "AllanKT/MachineLearningAsAService",
+   "lang": "Python",
+   "year": "2019",
+   "fork": false,
+   "languages": [
+    "Python",
+    "Jupyter Notebook",
+    "Dockerfile"
+   ]
+  },
+  {
+   "repo": "AllanKT/my-template-frontend",
+   "lang": "TypeScript",
+   "year": "2025",
+   "fork": false,
+   "languages": [
+    "TypeScript",
+    "HTML"
+   ]
+  },
+  {
+   "repo": "AllanKT/my_git_patterns",
+   "lang": "Shell",
+   "year": "2023",
+   "fork": false,
+   "languages": [
+    "Shell",
+    "Python",
+    "CSS"
+   ]
+  },
+  {
+   "repo": "AllanKT/opentelemetry-NestJs",
+   "lang": null,
+   "year": "2024",
+   "fork": false,
+   "languages": []
+  },
+  {
+   "repo": "AllanKT/Programacao-Paralela",
+   "lang": "C",
+   "year": "2019",
+   "fork": false,
+   "languages": [
+    "C",
+    "Dockerfile"
+   ]
+  },
+  {
+   "repo": "AllanKT/Prouni-Data-Classification",
+   "lang": "Jupyter Notebook",
+   "year": "2019",
+   "fork": false,
+   "languages": [
+    "Jupyter Notebook"
+   ]
+  },
+  {
+   "repo": "AllanKT/python-dynamo",
+   "lang": "Python",
+   "year": "2020",
+   "fork": false,
+   "languages": [
+    "Python"
+   ]
+  },
+  {
+   "repo": "AllanKT/ReactStefanini",
+   "lang": "HTML",
+   "year": "2020",
+   "fork": false,
+   "languages": [
+    "HTML"
+   ]
+  },
+  {
+   "repo": "AllanKT/SentimentalClassifierPoliticosBrasil2018",
+   "lang": "Jupyter Notebook",
+   "year": "2018",
+   "fork": false,
+   "languages": [
+    "Jupyter Notebook",
+    "Python"
+   ]
+  },
+  {
+   "repo": "AllanKT/Stefanini_ChatBots_TechnicalMeeting",
+   "lang": "JavaScript",
+   "year": "2020",
+   "fork": false,
+   "languages": [
+    "JavaScript",
+    "Dockerfile"
+   ]
+  },
+  {
+   "repo": "AllanKT/Text-Mining-and-NLP",
+   "lang": "Jupyter Notebook",
+   "year": "2019",
+   "fork": false,
+   "languages": [
+    "Jupyter Notebook"
+   ]
+  },
+  {
+   "repo": "AllanKT/UI_Kit_React",
+   "lang": "JavaScript",
+   "year": "2020",
+   "fork": false,
+   "languages": [
+    "JavaScript"
+   ]
+  },
+  {
+   "repo": "AllanKT/youtube_extraction",
+   "lang": "Python",
+   "year": "2021",
+   "fork": false,
+   "languages": [
+    "Python",
+    "JavaScript"
+   ]
+  }
+ ]
+}
